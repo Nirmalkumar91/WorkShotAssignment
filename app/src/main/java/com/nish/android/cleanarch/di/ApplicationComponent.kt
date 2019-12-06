@@ -7,7 +7,5 @@ import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, AndroidInjectionModule::class, ActivityModule::class])
-interface ApplicationComponent : AndroidInjector<CleanArchApplication> {
-
-}
+@Component(modules = [ApplicationModule::class, AndroidInjectionModule::class, ActivityModule::class, NetworkModule::class])
+interface ApplicationComponent : AndroidInjector<CleanArchApplication>

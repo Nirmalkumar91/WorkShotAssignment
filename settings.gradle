@@ -1,2 +1,6 @@
-include ':app'
+include ':app', ':nish-ui'
+include ':nish-core'
+project(':nish-core').projectDir = new File('framework/nish-core')
+include ':nish-ui'
+project(':nish-ui').projectDir = new File('framework/nish-ui')
 rootProject.name='CleanArch'

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CleanArch</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Clean Architecture</string>
+    <string name="title_activity_tutorial">Tutorial</string>
 </resources>
