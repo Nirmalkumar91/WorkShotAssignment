@@ -6,7 +6,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class HotelRepository @Inject constructor(private val hotelRemoteProvider: HotelRemoteProvider,
-                                          private val hotelCacheProvider: HotelCacheProvider) {
+                                          private val hotelCacheProvider: HotelCacheProvider
+): FetchHotelInterface {
 
     private val cacheHotelObservable = hotelCacheProvider.getHotelDetails()
 
@@ -20,11 +21,11 @@ class HotelRepository @Inject constructor(private val hotelRemoteProvider: Hotel
         hotelCacheProvider.saveCommentsList(it)
     }
 
-    fun getHotelDetails(): Observable<Hotel> {
+    override fun getHotelDetails(): Observable<Hotel> {
         return Observable.concat(cacheHotelObservable, remoteHotelObservable)
     }
 
-    fun getHotelComments(): Observable<List<Comment>> {
+    override fun getHotelComments(): Observable<List<Comment>> {
         return Observable.concat(cacheCommentsObservable, remoteCommentsObservable)
     }
 }
