@@ -50,7 +50,7 @@ class NetworkModule {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl("http://hiringworkshop.herokuapp.com/api/")
+            .baseUrl("https://hiringworkshop.herokuapp.com/")
             .client(okHttpClient)
             .build().create(HotelService::class.java!!)
     }

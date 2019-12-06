@@ -17,11 +17,16 @@ class HotelCacheProvider @Inject constructor(private val sharedPreference: Share
 
     override fun getHotelDetails(): Observable<Hotel> {
         val hotel = sharedPreference.getString(HOTEL_KEY, "")
-        return Observable.just(gson.fromJson(hotel, Hotel::class.java))
+        return if(!TextUtils.isEmpty(hotel)) {
+            Observable.just(gson.fromJson(hotel, Hotel::class.java))
+        } else {
+            Observable.just(Hotel("", "", "", "", "",""))
+            //Observable.error(Exception("Hotel not found"))
+        }
     }
 
     override fun getHotelComments(): Observable<List<Comment>> {
-        val comments = sharedPreference.getString(HOTEL_KEY, "")
+        val comments = sharedPreference.getString(COMMENTS_KEY, "")
         return if(!TextUtils.isEmpty(comments)) {
             Observable.just(gson.fromJson(comments, object: TypeToken<List<Comment>>(){}.type))
         } else {

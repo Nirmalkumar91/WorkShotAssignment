@@ -1,5 +1,6 @@
 package com.nish.android.cleanarch.viewmodel
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -19,8 +20,7 @@ class MainViewModel @Inject constructor(private val hotelRepository: HotelReposi
     val hotelReview = ObservableField<String>()
     val hotelCost = ObservableField<String>()
 
-    var commentsAdapter: CommentsAdapter? = null
-
+    lateinit var adapter: CommentsAdapter
     /*fun onGetStartedButtonClick() {
         startNavigationEvent(NavigationEvent(TutorialActivity::class.java, false))
     }*/
@@ -32,7 +32,7 @@ class MainViewModel @Inject constructor(private val hotelRepository: HotelReposi
     }
 
     private fun setHotelComments(comments: List<Comment>) {
-        commentsAdapter = CommentsAdapter(comments.map { CommentViewModel(it).apply { populateComment() } })
+        adapter.setDataList(comments.map { CommentViewModel(it).apply { populateComment() } })
     }
 
     private fun setHotelDetails(hotel: Hotel) {
@@ -48,5 +48,5 @@ class MainViewModel @Inject constructor(private val hotelRepository: HotelReposi
 }
 
     private fun onNetworkError(throwable: Throwable) {
-
+        Log.e("Error", throwable.message, throwable)
     }
