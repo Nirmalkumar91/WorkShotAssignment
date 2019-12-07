@@ -2,9 +2,10 @@ package com.nish.android.core
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.nish.android.core.events.NavigationEvent
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : FragmentActivity() {
 
     protected fun startActivity(event: NavigationEvent) {
         if (event.isExternalApp && event.intent != null) {
