@@ -20,8 +20,7 @@ class HotelCacheProvider @Inject constructor(private val sharedPreference: Share
         return if(!TextUtils.isEmpty(hotel)) {
             Observable.just(gson.fromJson(hotel, Hotel::class.java))
         } else {
-            Observable.just(Hotel("", "", "", "", "",""))
-            //Observable.error(Exception("Hotel not found"))
+            Observable.just(Hotel(EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,EMPTY))
         }
     }
 
@@ -45,5 +44,6 @@ class HotelCacheProvider @Inject constructor(private val sharedPreference: Share
     companion object {
         const val HOTEL_KEY = "HOTEL_KEY"
         const val COMMENTS_KEY = "COMMENTS_KEY"
+        const val EMPTY = ""
     }
 }

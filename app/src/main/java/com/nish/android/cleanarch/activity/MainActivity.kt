@@ -17,7 +17,7 @@ class MainActivity : BaseActivity() {
     lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-            AndroidInjection.inject(this)
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         val binding : ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         lifecycle.addObserver(mainViewModel)
@@ -33,6 +33,4 @@ class MainActivity : BaseActivity() {
     private fun registerEvents(viewModel: MainViewModel) {
         registerNavigationEvent(viewModel)
     }
-
-
 }

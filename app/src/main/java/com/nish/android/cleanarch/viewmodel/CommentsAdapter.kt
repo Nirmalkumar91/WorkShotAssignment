@@ -36,7 +36,7 @@ class CommentsAdapter @Inject constructor() : RecyclerView.Adapter<CommentsAdapt
     }
 
     fun setDataList(list: List<CommentViewModel>) {
-        this.dataModelList.apply {
+        dataModelList.apply {
             clear()
             addAll(list)
         }
@@ -44,7 +44,7 @@ class CommentsAdapter @Inject constructor() : RecyclerView.Adapter<CommentsAdapt
     }
 
     inner class ViewHolder(var itemRowBinding: ItemCommentBinding) :
-        RecyclerView.ViewHolder(itemRowBinding.getRoot()) {
+        RecyclerView.ViewHolder(itemRowBinding.root) {
 
         fun bind(commentViewModel: CommentViewModel) {
             itemRowBinding.viewmodel = commentViewModel
