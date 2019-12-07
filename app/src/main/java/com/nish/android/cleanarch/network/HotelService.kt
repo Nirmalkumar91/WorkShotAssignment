@@ -7,9 +7,9 @@ import io.reactivex.Observable
 
 interface HotelService {
 
-    @GET("/workshop/hotel")
+    @GET("api/workshop/hotel")
     fun getHotel(): Observable<Hotel>
 
-    @GET("/workshop/comments")
+    @GET("api/workshop/comments")
     fun getComments(): Observable<List<Comment>>
 }

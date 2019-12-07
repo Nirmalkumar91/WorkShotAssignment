@@ -6,11 +6,12 @@ import androidx.databinding.DataBindingUtil
 import android.view.ViewGroup
 import com.nish.android.cleanarch.R
 import com.nish.android.cleanarch.databinding.ItemCommentBinding
+import javax.inject.Inject
 
 
-class CommentsAdapter(
-    private val dataModelList: List<CommentViewModel>
-) : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+class CommentsAdapter @Inject constructor() : RecyclerView.Adapter<CommentsAdapter.ViewHolder>() {
+
+    private val dataModelList = mutableListOf<CommentViewModel>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -34,8 +35,16 @@ class CommentsAdapter(
         return dataModelList?.size
     }
 
+    fun setDataList(list: List<CommentViewModel>) {
+        dataModelList.apply {
+            clear()
+            addAll(list)
+        }
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(var itemRowBinding: ItemCommentBinding) :
-        RecyclerView.ViewHolder(itemRowBinding.getRoot()) {
+        RecyclerView.ViewHolder(itemRowBinding.root) {
 
         fun bind(commentViewModel: CommentViewModel) {
             itemRowBinding.viewmodel = commentViewModel
